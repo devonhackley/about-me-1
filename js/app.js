@@ -11,6 +11,7 @@ userName ? alert(`Hi ${userName}, let's play a guessing game about Ed`) : alert(
 for (let i = 0; i < questions.length; i++) {
   do {
     var response = prompt(`Does Ed ${questions[i]}?`).toLowerCase();
+    console.log(`Does Ed ${questions[i]}?`);
     response === 'yes' || response === 'y' ? responseYes = true : responseYes = false;
   } while (!answers.includes(response));
 
