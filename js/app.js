@@ -23,7 +23,7 @@ for (let i = 0; i < questions.length; i++) {
   (responseYes && i % 2 === 0) || (!responseYes && i % 2 !== 0) ? alert(`That's correct, Ed does ${negation} ${questions[i]}`) : alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
 }
 
-// generate a random number and ask user to guess it
+// generate a random number between 1 and 13 and ask user to guess it
 let randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
 console.log(randomNumber);
 let numberResponse;
@@ -34,3 +34,19 @@ while (j < 5 && randomNumber !== numberResponse) {
   j++;
 }
 if (randomNumber !== numberResponse) alert(`The random number was ${randomNumber} better luck next time.`);
+
+var correctAnswers = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
+var responseGuess = prompt('Guess one of my top ten favorite beers');
+
+for (let j = 0; j < 5; j++) {
+  console.log(responseGuess);
+  for (let value of correctAnswers) {
+    if (value.slice(1).toLowerCase() === responseGuess.toLowerCase()) {
+      alert(`Thats correct - ${responseGuess} is one of my top 10 beers. Here is a complete list ${correctAnswers}`);
+      var guessedCorrect = true;
+      j += 5;
+    }
+  }
+  if (!guessedCorrect) responseGuess = prompt(`No ${responseGuess} is not one of them. Try again`);
+}
+if (!guessedCorrect) alert(`Sorry, none of your guesses were correct. Here is a complete list ${correctAnswers}`);
