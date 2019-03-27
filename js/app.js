@@ -1,5 +1,6 @@
 'use strict';
 
+var correctGuesses = 0;
 var responseYes = false;
 const answers = ['yes', 'no', 'y', 'n'];
 const questions = ['speak fluent Danish', 'like brussel sprouts', 'have a 1929 Harley Davidson', 'like to work all the live-long day',
@@ -20,7 +21,13 @@ for (let i = 0; i < questions.length; i++) {
   // build a response message
   let negation = '';
   if ((responseYes && i % 2 !== 0) || (!responseYes && i % 2 !== 0)) negation = 'not';
-  (responseYes && i % 2 === 0) || (!responseYes && i % 2 !== 0) ? alert(`That's correct, Ed does ${negation} ${questions[i]}`) : alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
+
+  if (responseYes && i % 2 === 0 || !responseYes && i % 2 !== 0) {
+    alert(`That's correct, Ed does ${negation} ${questions[i]}`);
+    correctGuesses++;
+  } else {
+    alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
+  }
 }
 
 // generate a random number between 1 and 13 and ask user to guess it
@@ -30,11 +37,15 @@ let numberResponse;
 let j = 1;
 while (j < 5 && randomNumber !== numberResponse) {
   numberResponse = parseInt(prompt(`Guess a random nuber between 1 and 13. You have 4 tries. Attempt ${j}`));
-  if (randomNumber === numberResponse) alert(`Nice! The random number was ${randomNumber}`);
+  if (randomNumber === numberResponse) {
+    alert(`Nice! The random number was ${randomNumber}`);
+    correctGuesses++;
+  }
   j++;
 }
 if (randomNumber !== numberResponse) alert(`The random number was ${randomNumber} better luck next time.`);
 
+// ask user to guess a favorite beer
 var correctAnswers = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
 var responseGuess = prompt('Guess one of my top ten favorite beers');
 
@@ -43,6 +54,7 @@ for (let j = 0; j < 5; j++) {
   for (let value of correctAnswers) {
     if (value.slice(1).toLowerCase() === responseGuess.toLowerCase()) {
       alert(`Thats correct - ${responseGuess} is one of my top 10 beers. Here is a complete list ${correctAnswers}`);
+      correctGuesses++;
       var guessedCorrect = true;
       j += 5;
     }
@@ -50,3 +62,5 @@ for (let j = 0; j < 5; j++) {
   if (!guessedCorrect) responseGuess = prompt(`No ${responseGuess} is not one of them. Try again`);
 }
 if (!guessedCorrect) alert(`Sorry, none of your guesses were correct. Here is a complete list ${correctAnswers}`);
+
+correctGuesses < 5 ? alert(`You got ${correctGuesses} out of 7 correct. Better luck next time ${userName}`) : alert(`Well done! You got ${correctGuesses} out of 7 correct, ${userName}`);
