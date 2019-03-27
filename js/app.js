@@ -10,13 +10,12 @@ userName ? alert(`Hi ${userName}, let's play a guessing game about Ed`) : alert(
 
 for (let i = 0; i < questions.length; i++) {
   do {
-    var response = prompt(`Does Ed ${questions[i]}?`).toLowerCase();
+    var response = prompt(`Does Ed ${questions[i]}? y/n`).toLowerCase();
     console.log(`Does Ed ${questions[i]}?`);
     response === 'yes' || response === 'y' ? responseYes = true : responseYes = false;
   } while (!answers.includes(response));
 
-  var negation = '';
+  let negation = '';
   if ((responseYes && i % 2 !== 0) || (!responseYes && i % 2 !== 0)) negation = 'not';
-
   (responseYes && i % 2 === 0) || (!responseYes && i % 2 !== 0) ? alert(`That's correct, Ed does ${negation} ${questions[i]}`) : alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
 }

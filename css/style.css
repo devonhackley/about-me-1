@@ -4,6 +4,34 @@ body {
 }
 
 h1 {
-  font-size: 2em;
+  font-family: 'Monoton', cursive;
+  font-size: 3em;
   text-align: center;
+  margin-bottom: 60px;
+}
+
+.wrapper {
+  display: flex; /* make the wrapper (div) a flexbox */
+  flex-wrap: wrap; /* alow content to wrap to next line */
+}
+
+.wrapper > div {
+  flex: 200px; /* set size of content box to 200px */
+}
+
+.introimg {
+  display: block;
+  margin: auto;
+}
+
+.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.4em;
+  clear: right;
 }
