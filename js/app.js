@@ -31,19 +31,24 @@ for (let i = 0; i < questions.length; i++) {
 }
 
 // generate a random number between 1 and 13 and ask user to guess it
-let randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
+const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
 console.log(randomNumber);
-let numberResponse;
 let j = 1;
-while (j < 5 && randomNumber !== numberResponse) {
-  numberResponse = parseInt(prompt(`Guess a random nuber between 1 and 13. You have 4 tries. Attempt ${j}`));
-  if (randomNumber === numberResponse) {
-    alert(`Nice! The random number was ${randomNumber}`);
-    correctGuesses++;
-  }
+let numberResponse = parseInt(prompt('Guess a random number between 1 and 13 in 4 tries or less'));
+while(numberResponse !== randomNumber && j < 4) {
+  numberResponse < randomNumber ?
+    numberResponse = parseInt(prompt(`You guessed too low on attempt ${j}. Try again.`))
+    :
+    numberResponse = parseInt(prompt(`You guessed too high on attempt ${j}. Try again.`));
   j++;
 }
-if (randomNumber !== numberResponse) alert(`The random number was ${randomNumber} better luck next time.`);
+
+if(numberResponse === randomNumber) {
+  alert(`Nice! You guessed the random number ${randomNumber} on try number ${j}.`);
+  correctGuesses++;
+} else {
+  alert(`Oh no, you exceeded 4 tries. The number was ${randomNumber}`);
+}
 
 // ask user to guess a favorite beer
 var correctAnswers = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
