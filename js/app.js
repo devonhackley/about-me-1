@@ -8,30 +8,33 @@ const questions = ['speak fluent Danish', 'like brussel sprouts', 'have a 1929 H
 ];
 const beerArray = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
 
+
+function firstFiveQuestions() {
+  for (let i = 0; i < questions.length; i++) {
+    do {
+      var response = prompt(`Does Ed ${questions[i]}? y/n`).toLowerCase();
+      console.log(`Does Ed ${questions[i]}?`);
+      response === 'yes' || response === 'y' ? responseYes = true : responseYes = false;
+    } while (!answers.includes(response));
+  
+    // build a response message
+    let negation = '';
+    if ((responseYes && i % 2 !== 0) || (!responseYes && i % 2 !== 0)) negation = 'not';
+  
+    if (responseYes && i % 2 === 0 || !responseYes && i % 2 !== 0) {
+      alert(`That's correct, Ed does ${negation} ${questions[i]}`);
+      correctGuesses++;
+    } else {
+      alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
+    }
+  }
+  console.log('fiv', correctGuesses);
+}
 // get users name or if blank use ananoymous
 const userName = prompt('What is your name?');
 userName ? alert(`Hi ${userName}, let's play a guessing game about Ed`) : alert('Hi anonymous, let\'s play a guessing game about Ed');
 
 // prompt user until a yes/no response is entered
-for (let i = 0; i < questions.length; i++) {
-  do {
-    var response = prompt(`Does Ed ${questions[i]}? y/n`).toLowerCase();
-    console.log(`Does Ed ${questions[i]}?`);
-    response === 'yes' || response === 'y' ? responseYes = true : responseYes = false;
-  } while (!answers.includes(response));
-
-  // build a response message
-  let negation = '';
-  if ((responseYes && i % 2 !== 0) || (!responseYes && i % 2 !== 0)) negation = 'not';
-
-  if (responseYes && i % 2 === 0 || !responseYes && i % 2 !== 0) {
-    alert(`That's correct, Ed does ${negation} ${questions[i]}`);
-    correctGuesses++;
-  } else {
-    alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
-  }
-}
-console.log('fiv', correctGuesses);
 
 // generate a random number between 1 and 13 and ask user to guess it
 const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
@@ -83,6 +86,8 @@ for (let value of beerArray) {
 console.log('sev', correctGuesses);
 
 if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
+
+firstFiveQuestions();
 
 // let user know how many questions they got right
 correctGuesses < 5 ?
