@@ -22,9 +22,6 @@ h2 {
   background-color: #555;
   padding: 20px;
   color: #fff;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  clear: right; /* clear the floated meteorite png */
 }
 
 h5 {
