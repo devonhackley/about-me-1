@@ -57,39 +57,43 @@ function questionSix() {
   }
   console.log('six', correctGuesses);
 }
-// ask user to guess a favorite beer
-let responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
-let k = 0;
-let guessedRight = false;
-let lastChance = false;
 
-while (!guessedRight && k < 5) {
-  console.log(responseBeer);
+function questionSeven() {
+  // ask user to guess a favorite beer
+  let responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
+  let k = 0;
+  let guessedRight = false;
+  let lastChance = false;
+
+  while (!guessedRight && k < 5) {
+    console.log(responseBeer);
+    for (let value of beerArray) {
+      if (value.slice(1).toLowerCase() === responseBeer.toLowerCase()) {
+        alert(`Thats correct - ${responseBeer} is one of my top 10 beers. Here is a complete list ${beerArray}`);
+        correctGuesses++;
+        guessedRight = true;
+        lastChance = true;
+      }
+    }
+    if (!guessedRight) responseBeer = prompt(`No ${responseBeer} is not one of them. Try again`);
+    k++;
+  }
+
   for (let value of beerArray) {
-    if (value.slice(1).toLowerCase() === responseBeer.toLowerCase()) {
+    if (value.slice(1).toLowerCase() === responseBeer.toLowerCase() && !guessedRight) {
       alert(`Thats correct - ${responseBeer} is one of my top 10 beers. Here is a complete list ${beerArray}`);
       correctGuesses++;
-      guessedRight = true;
       lastChance = true;
     }
   }
-  if (!guessedRight) responseBeer = prompt(`No ${responseBeer} is not one of them. Try again`);
-  k++;
-}
+  console.log('sev', correctGuesses);
 
-for (let value of beerArray) {
-  if (value.slice(1).toLowerCase() === responseBeer.toLowerCase() && !guessedRight) {
-    alert(`Thats correct - ${responseBeer} is one of my top 10 beers. Here is a complete list ${beerArray}`);
-    correctGuesses++;
-    lastChance = true;
-  }
+  if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
 }
-console.log('sev', correctGuesses);
-
-if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
 
 firstFiveQuestions();
 questionSix();
+questionSeven();
 
 // let user know how many questions they got right
 correctGuesses < 5 ?
