@@ -31,10 +31,11 @@ for (let i = 0; i < questions.length; i++) {
     alert(`That's incorrect, Ed does ${negation} ${questions[i]}`);
   }
 }
+console.log('fiv', correctGuesses);
 
 // generate a random number between 1 and 13 and ask user to guess it
 const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
-console.log(randomNumber);
+console.log('random number generated', randomNumber);
 let j = 1;
 let numberResponse = parseInt(prompt('Guess a random number between 1 and 13 in 4 tries or less'));
 while (numberResponse !== randomNumber && j < 4) {
@@ -51,7 +52,7 @@ if(numberResponse === randomNumber) {
 } else {
   alert(`Oh no, you exceeded 4 tries. The number was ${randomNumber}`);
 }
-
+console.log('six', correctGuesses);
 // ask user to guess a favorite beer
 let responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
 let k = 0;
@@ -79,6 +80,7 @@ for (let value of beerArray) {
     lastChance = true;
   }
 }
+console.log('sev', correctGuesses);
 
 if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
 
