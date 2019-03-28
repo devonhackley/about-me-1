@@ -14,4 +14,4 @@ Installation
 ---
 - git clone https://github.com/esa2/about-me.git
 - cd into the about-me directory
-- run live-server or open inex.html file in browser
+- run live-server or open index.html file in browser
