@@ -35,7 +35,7 @@ const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
 console.log(randomNumber);
 let j = 1;
 let numberResponse = parseInt(prompt('Guess a random number between 1 and 13 in 4 tries or less'));
-while(numberResponse !== randomNumber && j < 4) {
+while (numberResponse !== randomNumber && j < 4) {
   numberResponse < randomNumber ?
     numberResponse = parseInt(prompt(`You guessed too low on attempt ${j}. Try again.`))
     :
@@ -51,21 +51,37 @@ if(numberResponse === randomNumber) {
 }
 
 // ask user to guess a favorite beer
-var correctAnswers = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
-var responseGuess = prompt('Guess one of my top ten favorite beers');
+const beerArray = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
+var responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
+let k = 0;
+var guessedRight = false;
+var lastChance = false;
 
-for (let j = 0; j < 5; j++) {
-  console.log(responseGuess);
-  for (let value of correctAnswers) {
-    if (value.slice(1).toLowerCase() === responseGuess.toLowerCase()) {
-      alert(`Thats correct - ${responseGuess} is one of my top 10 beers. Here is a complete list ${correctAnswers}`);
+while (!guessedRight && k < 5) {
+  console.log(responseBeer);
+  for (let value of beerArray) {
+    if (value.slice(1).toLowerCase() === responseBeer.toLowerCase()) {
+      alert(`Thats correct - ${responseBeer} is one of my top 10 beers. Here is a complete list ${beerArray}`);
       correctGuesses++;
-      var guessedCorrect = true;
-      j += 5;
+      guessedRight = true;
+      lastChance = true;
     }
   }
-  if (!guessedCorrect) responseGuess = prompt(`No ${responseGuess} is not one of them. Try again`);
+  if (!guessedRight) responseBeer = prompt(`No ${responseBeer} is not one of them. Try again`);
+  k++;
 }
-if (!guessedCorrect) alert(`Sorry, none of your guesses were correct. Here is a complete list ${correctAnswers}`);
 
-correctGuesses < 5 ? alert(`You got ${correctGuesses} out of 7 correct. Better luck next time ${userName}`) : alert(`Well done! You got ${correctGuesses} out of 7 correct, ${userName}`);
+for (let value of beerArray) {
+  if (value.slice(1).toLowerCase() === responseBeer.toLowerCase() && !guessedRight) {
+    alert(`Thats correct - ${responseBeer} is one of my top 10 beers. Here is a complete list ${beerArray}`);
+    correctGuesses++;
+    lastChance = true;
+  }
+}
+
+if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
+
+correctGuesses < 5 ?
+  alert(`You got ${correctGuesses} out of 7 correct. Better luck next time ${userName}`)
+  :
+  alert(`Well done! You got ${correctGuesses} out of 7 correct, ${userName}`);
