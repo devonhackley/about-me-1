@@ -6,6 +6,8 @@ const answers = ['yes', 'no', 'y', 'n'];
 const questions = ['speak fluent Danish', 'like brussel sprouts', 'have a 1929 Harley Davidson', 'like to work all the live-long day',
   'like to hunt for meteorites'
 ];
+const beerArray = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
+
 // get users name or if blank use ananoymous
 const userName = prompt('What is your name?');
 userName ? alert(`Hi ${userName}, let's play a guessing game about Ed`) : alert('Hi anonymous, let\'s play a guessing game about Ed');
@@ -51,11 +53,10 @@ if(numberResponse === randomNumber) {
 }
 
 // ask user to guess a favorite beer
-const beerArray = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust', ' Hop Venom', ' Lush', ' Brother', ' Sister', ' Ruination', ' Dead Guy'];
-var responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
+let responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
 let k = 0;
-var guessedRight = false;
-var lastChance = false;
+let guessedRight = false;
+let lastChance = false;
 
 while (!guessedRight && k < 5) {
   console.log(responseBeer);
@@ -81,6 +82,7 @@ for (let value of beerArray) {
 
 if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
 
+// let user know how many questions they got right
 correctGuesses < 5 ?
   alert(`You got ${correctGuesses} out of 7 correct. Better luck next time ${userName}`)
   :
