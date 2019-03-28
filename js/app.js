@@ -10,6 +10,7 @@ const beerArray = [' Arrogant Bastard', ' Lucille', ' Bodhizafa', ' Space Dust',
 
 
 function firstFiveQuestions() {
+  // prompt user until a yes/no response is entered
   for (let i = 0; i < questions.length; i++) {
     do {
       var response = prompt(`Does Ed ${questions[i]}? y/n`).toLowerCase();
@@ -34,28 +35,28 @@ function firstFiveQuestions() {
 const userName = prompt('What is your name?');
 userName ? alert(`Hi ${userName}, let's play a guessing game about Ed`) : alert('Hi anonymous, let\'s play a guessing game about Ed');
 
-// prompt user until a yes/no response is entered
-
-// generate a random number between 1 and 13 and ask user to guess it
-const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
-console.log('random number generated', randomNumber);
-let j = 1;
-let numberResponse = parseInt(prompt('Guess a random number between 1 and 13 in 4 tries or less'));
-while (numberResponse !== randomNumber && j < 4) {
-  numberResponse < randomNumber ?
-    numberResponse = parseInt(prompt(`You guessed too low on attempt ${j}. Try again.`))
-    :
-    numberResponse = parseInt(prompt(`You guessed too high on attempt ${j}. Try again.`));
-  j++;
+function questionSix() {
+  // generate a random number between 1 and 13 and ask user to guess it
+  const randomNumber = Math.floor(Math.random() * Math.floor(13)) + 1;
+  console.log('random number generated', randomNumber);
+  let j = 1;
+  let numberResponse = parseInt(prompt('Guess a random number between 1 and 13 in 4 tries or less'));
+  while (numberResponse !== randomNumber && j < 4) {
+    numberResponse < randomNumber ?
+      numberResponse = parseInt(prompt(`You guessed too low on attempt ${j}. Try again.`))
+      :
+      numberResponse = parseInt(prompt(`You guessed too high on attempt ${j}. Try again.`));
+    j++;
+  }
+  
+  if(numberResponse === randomNumber) {
+    alert(`Nice! You guessed the random number ${randomNumber} on try number ${j}.`);
+    correctGuesses++;
+  } else {
+    alert(`Oh no, you exceeded 4 tries. The number was ${randomNumber}`);
+  }
+  console.log('six', correctGuesses);
 }
-
-if(numberResponse === randomNumber) {
-  alert(`Nice! You guessed the random number ${randomNumber} on try number ${j}.`);
-  correctGuesses++;
-} else {
-  alert(`Oh no, you exceeded 4 tries. The number was ${randomNumber}`);
-}
-console.log('six', correctGuesses);
 // ask user to guess a favorite beer
 let responseBeer = prompt('Guess one of my top ten favorite beers. You have 6 tries.');
 let k = 0;
@@ -88,6 +89,7 @@ console.log('sev', correctGuesses);
 if (!lastChance) alert(`Sorry, none of your guesses were correct. Here is a complete list ${beerArray}`);
 
 firstFiveQuestions();
+questionSix();
 
 // let user know how many questions they got right
 correctGuesses < 5 ?
